@@ -23,8 +23,17 @@ class Employee
     end
 
     def save
-      @@records[self.name] = self
+        @@records[self.name] = self
     end
+
+    def self.view
+        view_all = @@records
+        view_all.each do |employee|
+            name, email = employee.partition
+            puts "#{name} #{email}"
+        end
+    end
+
 end
 
 def run
@@ -32,6 +41,7 @@ def run
 welder = Employee.new("franky", "welderworld@gmail.com")
 welder.save
 puts welder.inspect
+Employee.view
 
     while true do
         puts "Welder Records"
