@@ -34,9 +34,14 @@ class Employee
             employee_name = gets.chomp
             puts "Please enter employee e-mail: "
             employee_email = gets.chomp
-            @employee[self.name] << self.new(employee_name, employee_email)
+            @employee << Employee.new(employee_name, employee_email).to_s
+            puts @employee
         end
         @@records << @employee
+    end
+
+    def to_s
+        "#{name} #{email}"
     end
 
     def self.view
