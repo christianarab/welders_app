@@ -21,13 +21,33 @@ class Employee
     def vacation_days(days)
         @vacation_days = days
     end
-  end
+end
 
 def run
 
 welder = Employee.new("welderworld@gmail.com")
 puts welder.inspect
 
+    while true do
+        puts "Welder Records"
+        puts "Please enter a command"
+        puts "V for view records"
+        puts "F for find employee (by email)"
+        puts "A for add employee"
+        puts "Q to quit"
+
+        user_input = gets.chomp
+        case user_input
+        when 'v'
+            puts "viewing records..."
+        when 'f'
+            puts "finding employees..."
+        when 'a'
+            puts "add employees..."
+        when 'q'
+            break
+        end
+    end
 end
 
 run
