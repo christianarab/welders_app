@@ -37,11 +37,11 @@ class Employee
             @employee << Employee.new(employee_name, employee_email).to_s
             break
         end
-        @@records << @employee
+        puts @employee
     end
 
     def to_s
-        "#{name} #{email}"
+        "employee name: #{name} e-mail: #{email}"
     end
 
     def self.view
