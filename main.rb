@@ -48,15 +48,24 @@ class Employee
         view_all.each do |employee|
             puts employee
         end
+        return view_all
+    end
+
+    def self.find_by_email(email)
+        @@records.each do |_, employee|
+            if email == employee.email
+                return employee
+            end
+        end
     end
 
 end
 
 def run
 
-welder = Employee.new("franky", "welderworld@gmail.com")
-welder.save
-puts welder.inspect
+# welder = Employee.new("franky", "welderworld@gmail.com")
+# welder.save
+# puts welder.inspect
 
     while true do
         puts "Welder Records"
@@ -72,6 +81,8 @@ puts welder.inspect
             Employee.view
         when 'f'
             puts "finding employees..."
+            employee = Employee.find_by_email("welderworld@gmail.com")
+            puts employee.to_s
         when 'a'
             Employee.add_employee
         when 'q'
