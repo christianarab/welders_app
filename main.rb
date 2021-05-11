@@ -26,6 +26,19 @@ class Employee
         @@records[self.name] = self
     end
 
+    def self.add_employee
+        @employee = []
+        while true do
+            puts "Creating new employee"
+            puts "Please enter employee name: "
+            employee_name = gets.chomp
+            puts "Please enter employee e-mail: "
+            employee_email = gets.chomp
+            @employee[self.name] << self.new(employee_name, employee_email)
+        end
+        @@records << @employee
+    end
+
     def self.view
         view_all = @@records
         view_all.each do |employee|
@@ -41,7 +54,6 @@ def run
 welder = Employee.new("franky", "welderworld@gmail.com")
 welder.save
 puts welder.inspect
-Employee.view
 
     while true do
         puts "Welder Records"
@@ -54,11 +66,11 @@ Employee.view
         user_input = gets.chomp
         case user_input
         when 'v'
-            puts "viewing records..."
+            Employee.view
         when 'f'
             puts "finding employees..."
         when 'a'
-            puts "add employees..."
+            Employee.add_employee
         when 'q'
             break
         end
