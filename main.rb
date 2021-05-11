@@ -1,13 +1,13 @@
 class Employee
+    
     attr_accessor :email
     attr_reader :name, :salary, :vacation_days, :id
   
-    def initialize(email)
-        @email = email
-    end
-    
-    def name(name)
+    @@records = {}
+
+    def initialize(name, email)
         @name = name
+        @email = email
     end
 
     def employee_id(id)
@@ -21,11 +21,16 @@ class Employee
     def vacation_days(days)
         @vacation_days = days
     end
+
+    def save
+      @@records[self.name] = self
+    end
 end
 
 def run
 
-welder = Employee.new("welderworld@gmail.com")
+welder = Employee.new("franky", "welderworld@gmail.com")
+welder.save
 puts welder.inspect
 
     while true do
