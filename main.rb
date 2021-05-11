@@ -35,7 +35,7 @@ class Employee
             puts "Please enter employee e-mail: "
             employee_email = gets.chomp
             @employee << Employee.new(employee_name, employee_email).to_s
-            puts @employee
+            break
         end
         @@records << @employee
     end
@@ -47,8 +47,7 @@ class Employee
     def self.view
         view_all = @@records
         view_all.each do |employee|
-            name, email = employee.partition
-            puts "#{name} #{email}"
+            puts employee
         end
     end
 
