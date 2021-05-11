@@ -54,15 +54,27 @@ class Employee
     def self.find_by_email(email)
         @@records.each do |_, employee|
             if email == employee.email
-                return employee
+                return @@employee
             end
         end
+    end
+end
+
+class Admin < Employee
+    attr_accessor :name, :email
+
+    def initialize(admin_name, admin_password)
+        @admin_name = admin_name
+        @admin_password = admin_password
+    end
+
+    def self.select_record
+         @@record
     end
 
 end
 
 def run
-
 # welder = Employee.new("franky", "welderworld@gmail.com")
 # welder.save
 # puts welder.inspect
@@ -73,6 +85,7 @@ def run
         puts "V for view records"
         puts "F for find employee (by email)"
         puts "A for add employee"
+        puts "sudo for those with higher authority"
         puts "Q to quit"
 
         user_input = gets.chomp
@@ -85,6 +98,8 @@ def run
             puts employee.to_s
         when 'a'
             Employee.add_employee
+        when 'sudo'
+            Admin.select_record
         when 'q'
             break
         end
