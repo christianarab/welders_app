@@ -115,12 +115,12 @@ class Employee
   end
 
   def self.vacation(id, vacation_days)
-      @@records.each do |employee|
-          if id == employee.id
-              employee.vacation += vacation_days
-              puts "#{employee.name} now has #{vacation_days} vacation days added"
-          end
+    @@records.each do |employee|
+      if id == employee.id
+        employee.vacation += vacation_days
+        puts "#{employee.name} now has #{vacation_days} vacation days added"
       end
+    end
   end
   
   def self.add_employee
