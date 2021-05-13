@@ -1,9 +1,22 @@
 require_relative ('employee.rb')
+require_relative ('contract.rb')
 require_relative ('menu.rb')
 require_relative ('query.rb')
+require_relative ('project.rb')
+
+
+# Exercise query_strings
+
+# find employee where email_address equals drew@drew.com
+# find employees where salary is greater than 25
+# find employees where vacation_days are less than 10
+# find employees where email_address is like *@company.com
+
 
 def check_query(query_string) 
-  if query_string.include?('where') # query_string input will return true if string includes 'where'
+  if query_string.include?('find employee') # query_string input will return true if string includes 'where'
+    true
+  elsif query_string.include?('find employees')
     true
   else
     false
@@ -26,20 +39,20 @@ def query_search
       condition, value = query_string.split("than ") #splits query at "than " into condition(useless), value(interger)
       condition = "greater" # condition set as string
       results = Employee.find_vacation(condition, value.to_i) # var result equal return Array of find_vacation
-        if results != nil # if results are not nil
-          results.each { |e| puts "#{e.name} has #{e.vacation} vacation days remaining"} # Iterate over results, each iteration prints employee name and vacation properties
-        else
-          puts "#{query_string} has no results" # else print string
-        end
+      if results != nil # if results are not nil
+        results.each {|e| puts "#{e.name} has #{e.vacation} vacation days remaining"} # Iterate over results, each iteration prints employee name and vacation properties
+      else
+        puts "#{query_string} has no results" # else print string
+      end
     elsif query_string.include?("less than") # similar to ln 25 to 33
       condition, value = query_string.split("than ")
       condition = "less"
       results = Employee.find_vacation(condition, value.to_i)
-        if results != nil
-          puts "#{query_string} results\n"
-          results.each { |e| puts "#{e.name} has #{e.vacation} vacation days remaining"}
-        else
-          puts "#{query_string} has no results"
+      if results != nil
+        puts "#{query_string} results\n"
+        results.each {|e| puts "#{e.name} has #{e.vacation} vacation days remaining"}
+      else
+        puts "#{query_string} has no results"
       end
     end
   elsif query_string.include?("wage") # else if query string is wage
@@ -49,7 +62,7 @@ def query_search
       employees = Employee.find_wage(condition, value.to_i)
       if employees != nil
         puts "#{query_string} results\n"
-        employees.each { |e| puts "#{e.name} has a wage of #{e.wage}"}
+        employees.each {|e| puts "#{e.name} has a wage of #{e.wage}"}
       else
         puts "#{query_string} has no results"
       end
@@ -57,12 +70,12 @@ def query_search
       condition, value = query_string.split("than ")
       condition = "less"
       employees = Employee.find_wage(condition, value.to_i)
-        if employees != nil
-          puts "#{query_string} results\n"
-          employees.each { |e| puts "#{e.name} has a wage of #{e.wage}"}
-        else
-          puts "#{query_string} has no results"
-      end
+      if employees != nil
+        puts "#{query_string} results\n"
+        employees.each {|e| puts "#{e.name} has a wage of #{e.wage}"}
+      else
+        puts "#{query_string} has no results"
+    end
     end
   elsif query_string.include?("email equals ") # email equals query
     _, email = query_string.split("email equals ")
